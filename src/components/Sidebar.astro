@@ -1,0 +1,44 @@
+---
+import { Icon } from "astro-icon/components";
+import LiquidGlass from "./ui/starwind/tabs/LiquidGlass.astro";
+---
+
+<aside class="w-64" aria-label="Sidebar">
+  <LiquidGlass>
+    <ul class="w-full space-y-2">
+      <li
+        class="hover:bg-gray-200 ease-in-out duration-300 rounded-lg p-2 dark:hover:bg-gray-700"
+      >
+        <a
+          href="/"
+          class="flex h-10 items-center text-base font-normal text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700"
+        >
+          <Icon width={30} height={30} name="mdi:application-braces" />
+          <span class="ml-3 text-2xl">Main</span>
+        </a>
+      </li>
+      <li
+        class="hover:bg-gray-200 ease-in-out duration-300 rounded-lg p-2 dark:hover:bg-gray-700"
+      >
+        <a
+          href="/blog"
+          class="flex h-10 items-center text-base font-normal text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700"
+        >
+          <Icon width={30} height={30} name="mdi:fountain-pen-tip" />
+          <span class="ml-3 text-2xl">Blog&etc</span>
+        </a>
+      </li>
+      <li
+        class="hover:bg-gray-200 ease-in-out duration-300 rounded-lg p-2 dark:hover:bg-gray-700"
+      >
+        <a
+          href="/resume"
+          class="flex h-10 items-center text-base font-normal text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700"
+        >
+          <Icon width={30} height={30} name="mdi:card-account-details" />
+          <span class="ml-3 text-2xl">Resume</span>
+        </a>
+      </li>
+    </ul>
+  </LiquidGlass>
+</aside>
