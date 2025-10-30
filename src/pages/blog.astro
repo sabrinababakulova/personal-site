@@ -1,0 +1,82 @@
+---
+import LiquidGlass from "@/components/ui/starwind/tabs/LiquidGlass.astro";
+import Layout from "@/layouts/Layout.astro";
+import * as cheerio from "cheerio";
+
+const html = await fetch("https://t.me/s/toCandyStore").then((res) =>
+  res.text()
+);
+const $ = cheerio.load(html);
+const bubbles = $(".tgme_widget_message_bubble")
+  .get()
+  .map((el) => {
+    const post = $.html(el);
+    const $post = cheerio.load(post);
+    const text = $post(".tgme_widget_message_text").text();
+    const photos = $post(".tgme_widget_message_photo_wrap")
+      .get()
+      .map((el) => {
+        const img = $post(el).attr("style");
+        if (img && img.includes("background-image")) {
+          const urlMatch = img.match(/url\('?(.*?)'?\)/);
+          if (urlMatch && urlMatch[1]) {
+            return urlMatch[1];
+          }
+        }
+        return null;
+      });
+    const videos = $post(".tgme_widget_message_video_wrap")
+      .get()
+      .map((el) => {
+        return $post(el).find("video").attr("src");
+      });
+    return {
+      text,
+      photos: photos.slice(0, 2),
+      videos: videos.slice(0, 2),
+    };
+  });
+---
+
+<Layout>
+  <div class="grid grid-cols-2 gap-4">
+    {
+      bubbles.map((bubble) => (
+        <div class="w-full h-full">
+          <LiquidGlass classname="h-full">
+            <div class="flex flex-col gap-4 h-full w-full justify-between">
+              <div class="flex w-full h-72 overflow-hidden rounded-lg gap-4 justify-center  border-2 border-gray-300">
+                {bubble.photos.map(
+                  (photo) =>
+                    photo && (
+                      <img
+                        src={photo}
+                        alt="Telegram Photo"
+                        class="w-full h-full rounded-lg object-scale-down"
+                      />
+                    )
+                )}
+                {bubble.videos.map(
+                  (video) =>
+                    video && (
+                      <video
+                        controls
+                        src={video}
+                        class="w-full h-full rounded-lg object-scale-down"
+                      />
+                    )
+                )}
+                {bubble.photos.length === 0 && bubble.videos.length === 0 && (
+                  <div class="flex w-full h-full p-4 items-center justify-center text-gray-500">
+                    {bubble.text}
+                  </div>
+                )}
+              </div>
+              <p class="text-lg text-start">{bubble.text}</p>
+            </div>
+          </LiquidGlass>
+        </div>
+      ))
+    }
+  </div>
+</Layout>
