@@ -2,6 +2,7 @@
 import "../global.css";
 import Sidebar from "@/components/Sidebar.astro";
 import background from "../assets/background.svg";
+import Header from "@/components/Header.astro";
 ---
 
 <!doctype html>
@@ -17,8 +18,9 @@ import background from "../assets/background.svg";
   <body>
     <img src={background.src} alt="rotating background" class="rotating-bg" />
     <div
-      class="relative flex w-full h-full p-8 gap-8 box-border max-w-[1200px] mx-auto"
+      class="relative flex flex-col md:flex-row w-full h-full mt-28 md:mt-auto p-2 md:p-8 gap-8 box-border max-w-[1200px] mx-auto"
     >
+      <Header />
       <Sidebar />
       <slot />
     </div>

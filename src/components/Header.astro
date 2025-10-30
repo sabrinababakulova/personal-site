@@ -1,0 +1,35 @@
+---
+import { Icon } from "astro-icon/components";
+import { Separator } from "./ui/starwind/separator";
+import LiquidGlass from "./ui/starwind/tabs/LiquidGlass.astro";
+---
+
+<header class="fixed top-0 left-0 md:hidden z-10 w-full">
+  <LiquidGlass>
+    <div class="flex gap-4">
+      <a
+        href="/"
+        class="flex h-10 items-center text-base font-normal text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700"
+      >
+        <Icon width={25} height={25} name="mdi:application-braces" />
+        <span class="ml-3 text-lg">Main</span>
+      </a>
+      <Separator orientation="vertical" class="h-10 w-0.5" />
+      <a
+        href="/blog"
+        class="flex h-10 items-center text-base font-normal text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700"
+      >
+        <Icon width={25} height={25} name="mdi:fountain-pen-tip" />
+        <span class="ml-3 text-lg">Blog&etc</span>
+      </a>
+      <Separator orientation="vertical" class="h-10 w-0.5" />
+      <a
+        href="/resume"
+        class="flex h-10 items-center text-base font-normal text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700"
+      >
+        <Icon width={25} height={25} name="mdi:card-account-details" />
+        <span class="ml-3 text-lg">Resume</span>
+      </a>
+    </div>
+  </LiquidGlass>
+</header>
