@@ -18,7 +18,7 @@ import Header from "@/components/Header.astro";
   <body>
     <img src={background.src} alt="rotating background" class="rotating-bg" />
     <div
-      class="relative flex flex-col md:flex-row w-full h-full mt-28 md:mt-auto p-2 md:p-8 gap-8 box-border max-w-[1200px] mx-auto"
+      class="relative flex flex-col 2xl:flex-row w-full h-full mt-28 2xl:mt-auto p-2 2xl:p-8 gap-8 box-border max-w-[1200px] mx-auto"
     >
       <Header />
       <Sidebar />
@@ -40,7 +40,7 @@ import Header from "@/components/Header.astro";
     width: 100%;
     height: 100%;
     object-fit: cover;
-    animation: rotateBg 80s linear infinite;
+    animation: rotateBg 40s linear infinite;
     transform-origin: center center;
     filter: blur(10px);
   }
