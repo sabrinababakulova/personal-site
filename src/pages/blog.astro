@@ -2,11 +2,13 @@
 import LiquidGlass from "@/components/ui/starwind/tabs/LiquidGlass.astro";
 import Layout from "@/layouts/Layout.astro";
 import * as cheerio from "cheerio";
+// import * as fs from "fs";
 
 const html = await fetch("https://t.me/s/toCandyStore").then((res) =>
   res.text()
 );
 const $ = cheerio.load(html);
+// fs.writeFileSync("telegram.html", $.html());
 const bubbles = $(".tgme_widget_message_bubble")
   .get()
   .map((el) => {
@@ -35,7 +37,8 @@ const bubbles = $(".tgme_widget_message_bubble")
       photos: photos.slice(0, 2),
       videos: videos.slice(0, 2),
     };
-  });
+  })
+  .reverse();
 ---
 
 <Layout>
